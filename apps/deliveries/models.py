@@ -1,6 +1,7 @@
-from root import settings
 from django.db.models import Model, OneToOneField, ForeignKey, SET_NULL, CASCADE, TextChoices, TextField, CharField, \
     DateTimeField
+
+from root.settings import AUTH_USER_MODEL
 
 
 class DeliveryStatus(TextChoices):
@@ -12,7 +13,7 @@ class DeliveryStatus(TextChoices):
 
 class Delivery(Model):
     courier = ForeignKey(
-        settings.AUTH_USER_MODEL,
+        AUTH_USER_MODEL,
         on_delete=SET_NULL,
         null=True,
         blank=True,

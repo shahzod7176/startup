@@ -1,14 +1,15 @@
-from rest_framework import serializers, status
 from django.contrib.auth import get_user_model, authenticate
-from rest_framework.response import Response
-from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
+from rest_framework import serializers, status
+from rest_framework.response import Response
+from rest_framework.serializers import ModelSerializer
+from rest_framework.validators import UniqueValidator
 from rest_framework_simplejwt.tokens import RefreshToken
 
 User = get_user_model()
 
 
-class RegisterSerializer(serializers.ModelSerializer):
+class RegisterSerializer(ModelSerializer):
     email = serializers.EmailField(
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())]
@@ -33,7 +34,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-class LoginSerializer(serializers.ModelSerializer):
+class LoginSerializer(ModelSerializer):
     username = serializers.CharField()
     password = serializers.CharField(write_only=True)
 
@@ -59,7 +60,7 @@ class LoginSerializer(serializers.ModelSerializer):
         return Response({"detail": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'is_email_verified')

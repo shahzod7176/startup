@@ -1,8 +1,9 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
+
 from deliveries.models import Delivery
 
 
-class DeliverySerializer(serializers.ModelSerializer):
+class DeliverySerializer(ModelSerializer):
     class Meta:
         model = Delivery
         fields = ['id', 'courier', 'address', 'status', 'delivered_at', 'created_at']

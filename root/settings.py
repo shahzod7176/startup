@@ -60,7 +60,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'root.wsgi.application'
-# AUTH_USER_MODEL = 'users.User'
 AUTH_USER_MODEL = 'authentication.CustomUser'
 
 DATABASES = {
@@ -69,8 +68,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-# redis_container
 
 AUTH_PASSWORD_VALIDATORS = [
     # {
@@ -103,7 +100,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 from root.drf_settings import *
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -113,22 +109,21 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'qoshqulovshahzod9@gmail.com'
 EMAIL_HOST_PASSWORD = 'r m e n y s a k l p k m b w x j'
 
-
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
 CELERY_TASK_QUEUES = {
     'low_priority': {
-        'exchange': 'low_priority', # unused
+        'exchange': 'low_priority',  # unused
         'routing_key': 'low_priority',
     },
     'high_priority': {
-        'exchange': 'high_priority', # unused
+        'exchange': 'high_priority',  # unused
         'routing_key': 'high_priority',
     },
     'default': {
-         'exchange': 'default',
-         'routing_key': 'default'
-     },
+        'exchange': 'default',
+        'routing_key': 'default'
+    },
 }
 
 # LOGGING = {
