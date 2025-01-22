@@ -1,12 +1,15 @@
+from datetime import timedelta
+
 from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
 from rest_framework.validators import UniqueValidator
-from rest_framework_simplejwt.tokens import RefreshToken
 
 User = get_user_model()
+
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class RegisterSerializer(ModelSerializer):
@@ -53,8 +56,9 @@ class LoginSerializer(ModelSerializer):
         )
         if user is not None:
             refresh = RefreshToken.for_user(user)
+            refresh.set_exp(lifetime=timedelta(days=1))
             return Response({
-                "refresh": str(refresh),
+                "refresh": str(refresh),    
                 "access": str(refresh.access_token),
             })
         return Response({"detail": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)

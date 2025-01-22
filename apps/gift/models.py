@@ -1,5 +1,4 @@
 from django.db.models import Model, ForeignKey, CASCADE, CharField, TextField, DateField
-
 from authentication.models import CustomUser
 
 
