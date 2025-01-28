@@ -46,7 +46,6 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from authentication.serializers import (
     RegisterSerializer,
     LoginSerializer,
@@ -68,7 +67,6 @@ class LoginView(APIView):
     def get(self, request):
         serializer = LoginSerializer(request.user)
         return Response(serializer.data)
-    # serializer_class = LoginSerializer
 
 
 @extend_schema(tags=['authentication'])

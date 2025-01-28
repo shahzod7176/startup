@@ -1,7 +1,6 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework import permissions
 from rest_framework.generics import UpdateAPIView, ListCreateAPIView
-
 from notification.models import Notification
 from notification.serializers import NotificationSerializer
 
