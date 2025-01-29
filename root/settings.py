@@ -6,7 +6,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(os.path.join(BASE_DIR, 'apps'))
 
-SECRET_KEY = getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-*@z9ktc&*qdru7%98tm4$p)f84n$*@ie7e%j^gb*$0h!0^3@8&'
 
 DEBUG = True
 
@@ -70,14 +70,25 @@ AUTH_USER_MODEL = 'authentication.CustomUser'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': getenv('DB_NAME'),
+#         'USER': getenv('DB_USER'),
+#         'PASSWORD': getenv('DB_PASSWORD'),
+#         'HOST': getenv('DB_HOST'),
+#         'PORT': getenv('DB_PORT'),
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': getenv('DB_NAME'),
-        'USER': getenv('DB_USER'),
-        'PASSWORD': getenv('DB_PASSWORD'),
-        'HOST': getenv('DB_HOST'),
-        'PORT': getenv('DB_PORT'),
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '1',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
